@@ -169,7 +169,7 @@ if ERRORLEVEL 1 goto error
 
 REM === Ajout : copie automatique du WAR généré ===
 if exist "%MAVEN_PROJECTBASEDIR%\target\spring-web-1.0-SNAPSHOT.war" (
-    copy /Y "%MAVEN_PROJECTBASEDIR%\target\spring-web-1.0-SNAPSHOT.war" "C:\Users\Iratra\Desktop\apache-tomcat-9.0.106\apache-tomcat-9.0.106\webapps\"
+    copy /Y "%MAVEN_PROJECTBASEDIR%\target\spring-web-1.0-SNAPSHOT.war" "C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps\"
 )
 
 goto end
