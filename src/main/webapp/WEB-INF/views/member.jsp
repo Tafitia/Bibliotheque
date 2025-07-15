@@ -3,54 +3,243 @@
 
 <html>
 <head>
-    <title>LIBRARY</title>
+    <title>BIBLIOTHÈQUE</title>
     <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f5dc 0%, #e6dcc7 100%);
+            color: #16213e;
+            min-height: 100vh;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #16213e 0%, #0f172a 100%);
+            color: #f5f5dc;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(22, 33, 62, 0.3);
+        }
+        
+        header h1 {
+            margin: 0;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        header nav a {
+            color: #f5f5dc;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid transparent;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        header nav a:hover {
+            border-color: #f5f5dc;
+            background-color: rgba(245, 245, 220, 0.1);
+        }
+
         main {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        padding: 20px;
-        max-width: 1000px;
-        margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+            max-width: 1200px;
+            margin: auto;
         }
 
         #card, #loans, #reservations {
-        background: #fff;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        padding: 15px;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            background: rgba(245, 245, 220, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(22, 33, 62, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(22, 33, 62, 0.1);
         }
 
         #card {
-        grid-column: 1 / 2; /* Colonne 1 */
+            grid-column: 1 / 2;
         }
 
         #loans {
-        grid-column: 2 / 3; /* Colonne 2 */
+            grid-column: 2 / 3;
         }
 
         #reservations {
-        grid-column: 1 / 3; /* Prend toute la largeur sous les deux autres */
+            grid-column: 1 / 3;
+        }
+        
+        h3 {
+            color: #16213e;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .member-card p {
+            margin: 10px 0;
+            color: #16213e;
+            font-size: 1.1rem;
+        }
+        
+        .member-card strong {
+            color: #0f172a;
+        }
+        
+        .member-card ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .member-card li {
+            margin: 5px 0;
+            color: #16213e;
+        }
+        
+        .status-approved {
+            color: #228b22;
+            font-weight: bold;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(22, 33, 62, 0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #16213e 0%, #0f172a 100%);
+            color: #f5f5dc;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        th:hover {
+            background: linear-gradient(135deg, #1e2a4a 0%, #16213e 100%);
+        }
+        
+        tr:hover {
+            background-color: rgba(22, 33, 62, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #16213e;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #d4c5a9;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #16213e;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #16213e;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 8px rgba(22, 33, 62, 0.2);
+        }
+        
+        button {
+            background: linear-gradient(135deg, #16213e 0%, #0f172a 100%);
+            color: #f5f5dc;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(22, 33, 62, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(22, 33, 62, 0.4);
+        }
+        
+        .extension-form button {
+            width: 100%;
+            margin-top: 5px;
+        }
+        
+        .action-link {
+            color: #16213e;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .action-link:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: #8b0000;
+            background-color: rgba(255, 182, 193, 0.3);
+            border: 2px solid #cd5c5c;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
         }
 
         @media (max-width: 768px) {
-        main {
-            grid-template-columns: 1fr;
-        }
-        #card, #loans, #reservations {
-            grid-column: auto;
-        }
+            main {
+                grid-template-columns: 1fr;
+            }
+            #card, #loans, #reservations {
+                grid-column: auto;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>LIBRARY</h1>
+        <h1>BIBLIOTHÈQUE</h1>
         <nav>
             <ul>
-                <li><a href="home">Home</a></li>
-                <li><a href="disconnect">Disconnect</a></li>
+                <li><a href="home">Accueil</a></li>
+                <li><a href="disconnect">Déconnexion</a></li>
             </ul>
         </nav>
     </header>
@@ -60,21 +249,21 @@
         <!-- Member Card Section -->
        <div id="card" >
             <div class="member-card">
-                <p><strong>Member Id :</strong> ${member.id}</p>
-                <p><strong>Username :</strong> ${member.username}</p>
+                <p><strong>ID Membre :</strong> ${member.id}</p>
+                <p><strong>Nom d'utilisateur :</strong> ${member.username}</p>
                 <p><strong>Email :</strong> ${member.email}</p>
-                <p><strong>Member type :</strong> ${member.memberType.value}</p>
-                <p><strong>Registration date :</strong> ${member.registrationDate}</p>
-                <p><strong>Status :</strong> <span class="status-approved">active</span></p>
-                <p><strong>Loan quota :</strong> ${member.memberType.quotaLoan}</p>
-                <p><strong>Reservation quota :</strong> ${member.memberType.quotaReservation}</p>
-                <p><strong>Extension quota :</strong> ${member.memberType.quotaExtension}</p>
-                <p><strong>Subscription :</strong></p>
+                <p><strong>Type de membre :</strong> ${member.memberType.value}</p>
+                <p><strong>Date d'inscription :</strong> ${member.registrationDate}</p>
+                <p><strong>Statut :</strong> <span class="status-approved">actif</span></p>
+                <p><strong>Quota d'emprunts :</strong> ${member.memberType.quotaLoan}</p>
+                <p><strong>Quota de réservations :</strong> ${member.memberType.quotaReservation}</p>
+                <p><strong>Quota d'extensions :</strong> ${member.memberType.quotaExtension}</p>
+                <p><strong>Abonnement :</strong></p>
                 <ul>
-                    <li><strong>Name :</strong> ${subscription.subscriptionType.name}</li>
-                    <li><strong>Duration :</strong> ${subscription.subscriptionType.duration} days</li>
-                    <li><strong>Start date :</strong> ${subscription.subscriptionStart}</li>
-                    <li><strong>End date :</strong> ${subscription.subscriptionEnd}</li>
+                    <li><strong>Nom :</strong> ${subscription.subscriptionType.name}</li>
+                    <li><strong>Durée :</strong> ${subscription.subscriptionType.duration} jours</li>
+                    <li><strong>Date de début :</strong> ${subscription.subscriptionStart}</li>
+                    <li><strong>Date de fin :</strong> ${subscription.subscriptionEnd}</li>
                 </ul>
             </div>
         </div>
@@ -136,16 +325,16 @@
          
         <!-- Loans Section -->
         <div id="loans">
-            <h3>My loans</h3>
+            <h3>Mes emprunts</h3>
             <table id="loansTable">
                 <thead>
                     <tr>
-                        <th data-sort="loanId">Loan ID</th>
-                        <th data-sort="copyId">Copy ID</th>
-                        <th data-sort="librarian">Librarian</th>
-                        <th data-sort="loanDate">Loan Date</th>
-                        <th data-sort="startDate">Start Date</th>
-                        <th data-sort="dueDate">Due Date</th>
+                        <th data-sort="loanId">ID Emprunt</th>
+                        <th data-sort="copyId">ID Copie</th>
+                        <th data-sort="librarian">Bibliothécaire</th>
+                        <th data-sort="loanDate">Date d'emprunt</th>
+                        <th data-sort="startDate">Date de début</th>
+                        <th data-sort="dueDate">Date d'échéance</th>
                         <th>Extensions</th>
                     </tr>
                 </thead>
@@ -162,10 +351,10 @@
                                 <form action="extension" method="post" class="extension-form">
                                     <input type="hidden" name="loan" value="${loan.id}">
                                     <div class="form-group">
-                                        <label for="extension">Extension (days):</label>
+                                        <label for="extension">Extension (jours) :</label>
                                         <input type="number" name="duration" id="duration" min="1" max="7" required>
                                     </div>
-                                    <button type="submit">Ask for extension</button>
+                                    <button type="submit">Demander une extension</button>
                                 </form>
                             </td>
                         </tr>
@@ -177,7 +366,7 @@
         
         <!-- Reservations Section -->
         <div id="reservations">
-            <h3>Do a reservation</h3>
+            <h3>Faire une réservation</h3>
             <form action="reservation" method="post" class="reservation-form">
                 <c:if test="${not empty error}">
                     <div class="error-message">
@@ -187,32 +376,32 @@
                 <c:choose>
                     <c:when test="${not empty book}">
                         <div class="form-group">
-                            <strong>Book :</strong>
+                            <strong>Livre :</strong>
                             <ul>
-                                <li><strong>Book ID :</strong> ${book.id}</li>
-                                <li><strong>Title :</strong> ${book.title}</li>
-                                <li><strong>Author :</strong> ${book.author.name}</li>
-                                <li><strong>Book genre :</strong> ${book.bookGenre.value}</li>
+                                <li><strong>ID du livre :</strong> ${book.id}</li>
+                                <li><strong>Titre :</strong> ${book.title}</li>
+                                <li><strong>Auteur :</strong> ${book.author.name}</li>
+                                <li><strong>Genre du livre :</strong> ${book.bookGenre.value}</li>
                             </ul>
                             <input type="hidden" name="book" value="${book.id}">
                         </div>
                     </c:when>
                     <c:otherwise>
-                        <p><a href="home" class="action-link">Want to reserve a book? Choose one first</a></p>
+                        <p><a href="home" class="action-link">Vous voulez réserver un livre ? Choisissez-en un d'abord</a></p>
                     </c:otherwise>
                 </c:choose>
 
                 <div class="form-group">
-                    <label for="start_date">Start date :</label>
+                    <label for="start_date">Date de début :</label>
                     <input type="date" name="start_date" id="start_date" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="duration">Duration (days) :</label>
+                    <label for="duration">Durée (jours) :</label>
                     <input type="number" name="duration" id="duration" min="1" max="14" required>
                 </div>
                 
-                <button type="submit">Reserve</button>
+                <button type="submit">Réserver</button>
             </form>
         </div>
     </main>

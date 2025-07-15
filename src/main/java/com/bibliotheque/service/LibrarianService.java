@@ -419,7 +419,7 @@ public class LibrarianService {
 
 
     @Transactional
-    public void returnLoan(Long idLoan, Long idLibrarian) {
+    public void returnLoan(Long idLoan, LocalDate returnDate, Long idLibrarian) {
         // Vérifier si le bibliothécaire existe
         Librarian librarian = librarianRepository.findById(idLibrarian)
             .orElseThrow(() -> new RuntimeException("Librarian not found with id: " + idLibrarian));
@@ -428,27 +428,26 @@ public class LibrarianService {
         Loan loan = loanRepository.findById(idLoan)
             .orElseThrow(() -> new RuntimeException("Loan not found with id: " + idLoan));
 
-        // Mettre à jour les infos de retour
-        LocalDate now = LocalDate.now();
-        loan.setReturnDate(now);
+        // Mettre à jour les infos de retour avec la date configurée
+        loan.setReturnDate(returnDate);
         loan.setLibrarianReturn(librarian);
         loanRepository.save(loan);
 
         MemberQuotaLoan quota = new MemberQuotaLoan();
         quota.setMember(loan.getMember());
         quota.setQuota(1);
-        quota.setQuotaDate(LocalDate.now());
+        quota.setQuotaDate(returnDate);
         quota.setLoan(loan);
         memberQuotaLoanRepository.save(quota);
 
-        // Vérifier s'il y a un retard
-        if (now.isAfter(loan.getDueDate())) {
+        // Vérifier s'il y a un retard (basé sur la date de retour configurée)
+        if (returnDate.isAfter(loan.getDueDate())) {
             Member member = loan.getMember();
             MemberType memberType = member.getMemberType();
 
             // Durée de la pénalité
             int penalityDuration = memberType.getPenalityDuration();
-            LocalDate startDate = now;
+            LocalDate startDate = returnDate;
             LocalDate endDate = startDate.plusDays(penalityDuration);
 
             // Insertion pénalité
@@ -462,7 +461,7 @@ public class LibrarianService {
             MemberStatus memberStatus = new MemberStatus();
             memberStatus.setMember(member);
             memberStatus.setStatus(status);
-            memberStatus.setStatusDate(now);
+            memberStatus.setStatusDate(returnDate);
             memberStatusRepository.save(memberStatus);
         }
     }
