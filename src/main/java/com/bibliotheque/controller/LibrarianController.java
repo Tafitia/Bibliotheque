@@ -155,12 +155,17 @@ public class LibrarianController {
     }
 
     @PostMapping("/return-loan")
-    public String returnLoan(@RequestParam("loan") String loan, HttpSession session) {
+    public String returnLoan(@RequestParam("loan") String loan, 
+                           @RequestParam("return_date") String returnDate,
+                           HttpSession session) {
         try {
             Long idLoan = Long.parseLong(loan);
-            librarianService.returnLoan(idLoan, (Long)session.getAttribute("sessionLibrarian"));
+            LocalDate returnDateParsed = LocalDate.parse(returnDate);
+            librarianService.returnLoan(idLoan, returnDateParsed, (Long)session.getAttribute("sessionLibrarian"));
         } catch (NumberFormatException e) {
             session.setAttribute("error", "Invalid format for loan.");
+        } catch (DateTimeParseException e) {
+            session.setAttribute("error", "Invalid date format for return date.");
         } catch (Exception e) {
             session.setAttribute("error", e.getMessage());
         }

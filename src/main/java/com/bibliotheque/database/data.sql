@@ -15,27 +15,27 @@ INSERT INTO member_type (
     value, quota_loan, quota_reservation, quota_extension,
     loan_duration, extension_duration, penality_duration
 ) VALUES
-('Student', 3, 2, 1, 15, 7, 10),
-('Teacher', 5, 3, 2, 30, 15, 5),
+('Etudiant', 3, 2, 1, 15, 7, 10),
+('Enseignant', 5, 3, 2, 30, 15, 5),
 ('Public', 2, 1, 1, 10, 5, 15);
 
 INSERT INTO subscription_type (name, duration) VALUES
-('Monthly', 30),
-('Quarterly', 90),
-('Annual', 365);
+('Mensuel', 30),
+('Trimestriel', 90),
+('Annuel', 365);
 
 INSERT INTO book_genre (value) VALUES
-('Novel'),
+('Roman'),
 ('Science Fiction'),
 ('Fantasy'),
-('Biography'),
-('History');
+('Biographie'),
+('Histoire');
 
 INSERT INTO book_theme (value) VALUES
-('Magic'),
-('War'),
-('Friendship'),
-('Adventure'),
+('Magie'),
+('Guerre'),
+('Amitié'),
+('Aventure'),
 ('Science');
 
 INSERT INTO author (name, artist_name) VALUES
@@ -52,7 +52,7 @@ INSERT INTO librarian (username, password) VALUES
 
 INSERT INTO book (title, id_author, id_book_genre, edition_date, age)
 VALUES 
-('Les Misérables', 1, 1, '1862-04-03', 12),
+('Les Miserables', 1, 1, '1862-04-03', 12),
 ('1984', 2, 2, '1949-06-08', 16),
 ('L Homme qui rit', 1, 1, '1869-01-01', 14);
 
