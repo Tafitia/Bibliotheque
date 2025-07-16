@@ -4,24 +4,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>LIBRARY</title>
+    <title>BIBLIOTHÈQUE</title>
 <style>
     body {
-        font-family: sans-serif;
+        font-family: 'Georgia', serif;
         margin: 0;
         padding: 0;
-        background-color: #fafafa;
+        background: linear-gradient(135deg, #f5f5dc 0%, #e6dcc7 100%);
+        color: #16213e;
+        min-height: 100vh;
     }
 
     header {
-        background-color: #222;
-        color: white;
-        padding: 10px;
+        background: linear-gradient(135deg, #16213e 0%, #0f172a 100%);
+        color: #f5f5dc;
+        padding: 1.5rem;
+        box-shadow: 0 4px 12px rgba(22, 33, 62, 0.3);
     }
 
     header h1 {
         margin: 0;
-        font-size: 20px;
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
 
     header nav ul {
@@ -29,70 +36,191 @@
         margin: 0;
         padding: 0;
         display: flex;
-        gap: 10px;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 1rem;
     }
 
     header nav a {
-        color: white;
+        color: #f5f5dc;
         text-decoration: none;
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
+        border: 2px solid transparent;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+    }
+    
+    header nav a:hover {
+        border-color: #f5f5dc;
+        background-color: rgba(245, 245, 220, 0.1);
     }
 
     main {
-        padding: 20px;
+        padding: 30px;
+        max-width: 1200px;
+        margin: auto;
     }
 
     h3 {
-        margin-top: 30px;
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 5px;
+        color: #16213e;
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 25px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #d4c5a9;
+    }
+
+    #loans, #notifications, #read, #loan, #subscribe {
+        background: rgba(245, 245, 220, 0.9);
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 30px;
+        box-shadow: 0 6px 20px rgba(22, 33, 62, 0.15);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(22, 33, 62, 0.1);
     }
 
     table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 10px;
+        margin-top: 15px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        overflow: hidden;
         margin-bottom: 20px;
     }
 
     th, td {
-        border: 1px solid #ccc;
-        padding: 5px 10px;
+        padding: 12px;
         text-align: left;
+        border-bottom: 1px solid rgba(22, 33, 62, 0.1);
+    }
+
+    th {
+        background: linear-gradient(135deg, #16213e 0%, #0f172a 100%);
+        color: #f5f5dc;
+        font-weight: bold;
+    }
+
+    tr:hover {
+        background-color: rgba(22, 33, 62, 0.05);
     }
 
     .notification-card {
-        border: 1px solid #bbb;
-        background-color: #fff;
-        padding: 10px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 2px solid rgba(22, 33, 62, 0.1);
+        box-shadow: 0 3px 10px rgba(22, 33, 62, 0.1);
+    }
+
+    .notification-card h5 {
+        color: #16213e;
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        font-weight: bold;
+        margin-top: 0;
+    }
+
+    .notification-card p {
+        margin: 8px 0;
+        color: #16213e;
+    }
+
+    .notification-card strong {
+        color: #0f172a;
+    }
+
+    .notification-card ul {
         margin: 10px 0;
+        padding-left: 20px;
+    }
+
+    .notification-card li {
+        margin: 5px 0;
+        color: #16213e;
     }
 
     form {
-        margin: 10px 0;
-        padding: 10px;
-        background: #f2f2f2;
-        border: 1px solid #ccc;
+        margin: 15px 0;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.6);
+        border: 2px solid rgba(22, 33, 62, 0.1);
+        border-radius: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
     }
 
     label {
         display: block;
-        margin-bottom: 5px;
+        margin-bottom: 8px;
+        color: #16213e;
         font-weight: bold;
+        font-size: 1.1rem;
     }
 
     input, select, button {
         margin-bottom: 10px;
-        padding: 5px;
-        width: 100%;
+        padding: 12px;
+        border: 2px solid #d4c5a9;
+        border-radius: 8px;
+        font-size: 1rem;
+        background-color: rgba(255, 255, 255, 0.8);
+        color: #16213e;
+        transition: all 0.3s ease;
         box-sizing: border-box;
     }
 
+    input:focus, select:focus {
+        outline: none;
+        border-color: #16213e;
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 0 8px rgba(22, 33, 62, 0.2);
+    }
+
+    button {
+        background: linear-gradient(135deg, #16213e 0%, #0f172a 100%);
+        color: #f5f5dc;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 10px rgba(22, 33, 62, 0.3);
+        width: auto;
+    }
+
+    button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(22, 33, 62, 0.4);
+    }
+
+    input[type="radio"] {
+        width: auto;
+        margin-right: 8px;
+        margin-left: 10px;
+    }
+
+    input[type="radio"] + label {
+        display: inline;
+        margin-right: 15px;
+        font-weight: normal;
+    }
+
     .error-message {
-        background: #ffdada;
-        color: red;
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid red;
+        color: #8b0000;
+        background-color: rgba(255, 182, 193, 0.3);
+        border: 2px solid #cd5c5c;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
     }
 
     .form-group ul {
@@ -101,11 +229,17 @@
     }
 
     .form-group li {
-        margin-bottom: 3px;
+        margin-bottom: 5px;
+        color: #16213e;
     }
 
     .action-link {
-        color: blue;
+        color: #16213e;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .action-link:hover {
         text-decoration: underline;
     }
 </style>
@@ -113,11 +247,11 @@
 </head>
 <body>
 <header>
-    <h1>LIBRARY</h1>
+    <h1>BIBLIOTHÈQUE</h1>
     <nav>
         <ul>
-            <li><a href="home">Home</a></li>
-            <li><a href="disconnect">Disconnect</a></li>
+            <li><a href="home">Accueil</a></li>
+            <li><a href="disconnect">Déconnexion</a></li>
         </ul>
     </nav>
 </header>
@@ -130,23 +264,23 @@
     </c:if>
     <!-- Zone des emprunts -->
 <div id="loans">
-    <h3>Active Loans</h3>
+    <h3>Emprunts actifs</h3>
 <c:choose>
     <c:when test="${empty loans}">
-        <p>No active loans.</p>
+        <p>Aucun emprunt actif.</p>
     </c:when>
     <c:otherwise>
         <table>
             <thead>
             <tr>
-                <th>Loan ID</th>
-                <th>Member</th>
-                <th>Copy ID</th>
-                <th>Librarian</th>
-                <th>Loan Date</th>
-                <th>Start Date</th>
-                <th>Due Date</th>
-                <th>Returned</th>
+                <th>ID Emprunt</th>
+                <th>Membre</th>
+                <th>ID Copie</th>
+                <th>Bibliothécaire</th>
+                <th>Date d'emprunt</th>
+                <th>Date de début</th>
+                <th>Date d'échéance</th>
+                <th>Retourné</th>
             </tr>
             </thead>
             <tbody>
@@ -162,9 +296,14 @@
                     <td>
                         <c:choose>
                             <c:when test="${empty loan.returnDate}">
-                                <form action="return-loan" method="post">
+                                <form action="return-loan" method="post" class="return-loan-form">
                                     <input type="hidden" name="loan" value="${loan.id}" />
-                                    <button type="submit">Mark as Returned</button>
+                                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                                        <label for="return_date_${loan.id}" style="font-size: 0.9rem; color: #16213e; margin-bottom: 2px;">Date de retour :</label>
+                                        <input type="date" name="return_date" id="return_date_${loan.id}" required 
+                                               style="padding: 6px; border: 1px solid #d4c5a9; border-radius: 4px; font-size: 0.9rem; margin-bottom: 5px;" />
+                                        <button type="submit" style="padding: 8px 12px; font-size: 0.9rem;">Marquer comme retourné</button>
+                                    </div>
                                 </form>
                             </c:when>
                             <c:otherwise>
@@ -183,61 +322,61 @@
 
 <!-- Zone des notifications -->
 <div id="notifications">
-    <h3>Loan Extensions Requests</h3>
+    <h3>Demandes d'extension d'emprunt</h3>
     <c:choose>
         <c:when test="${empty extensions}">
-            <p>No extension requests.</p>
+            <p>Aucune demande d'extension.</p>
         </c:when>
         <c:otherwise>
             <c:forEach var="ext" items="${extensions}">
                 <div class="notification-card">
                     <h5>Extension #${ext.id}</h5>
-                    <p><strong>Requested Due Date:</strong> ${ext.askDueDate}</p>
-                    <p><strong>Extension Date:</strong> ${ext.extensionDate}</p>
+                    <p><strong>Date d'échéance demandée :</strong> ${ext.askDueDate}</p>
+                    <p><strong>Date d'extension :</strong> ${ext.extensionDate}</p>
 
-                    <p><strong>Loan:</strong> #${ext.loan.id} by ${ext.loan.member.username}</p>
+                    <p><strong>Emprunt :</strong> #${ext.loan.id} par ${ext.loan.member.username}</p>
                     <ul>
-                        <li>Book Title: ${ext.loan.copy.book.title}</li>
-                        <li>Author: ${ext.loan.copy.book.author.name}</li>
-                        <li>Genre: ${ext.loan.copy.book.bookGenre.value}</li>
+                        <li>Titre du livre : ${ext.loan.copy.book.title}</li>
+                        <li>Auteur : ${ext.loan.copy.book.author.name}</li>
+                        <li>Genre : ${ext.loan.copy.book.bookGenre.value}</li>
                     </ul>
-                    <p><strong>Original Due Date:</strong> ${ext.loan.dueDate}</p>
+                    <p><strong>Date d'échéance originale :</strong> ${ext.loan.dueDate}</p>
 
                     <form action="extension-librarian" method="post">
                         <input type="hidden" name="extension" value="${ext.id}">
-                        <label><input type="radio" name="decision" value="approve" required> Approve</label>
-                        <label><input type="radio" name="decision" value="decline"> Decline</label>
-                        <button type="submit">Submit</button>
+                        <label><input type="radio" name="decision" value="approve" required> Approuver</label>
+                        <label><input type="radio" name="decision" value="decline"> Refuser</label>
+                        <button type="submit">Valider</button>
                     </form>
                 </div>
             </c:forEach>
         </c:otherwise>
     </c:choose>
 
-    <h3>Reservations Requests</h3>
+    <h3>Demandes de réservation</h3>
     <c:choose>
         <c:when test="${empty reservations}">
-            <p>No reservation requests.</p>
+            <p>Aucune demande de réservation.</p>
         </c:when>
         <c:otherwise>
             <c:forEach var="res" items="${reservations}">
                 <div class="notification-card">
-                    <h5>Reservation #${res.id}</h5>
-                    <p><strong>Member:</strong> ${res.member.username}</p>
+                    <h5>Réservation #${res.id}</h5>
+                    <p><strong>Membre :</strong> ${res.member.username}</p>
                     <ul>
-                        <li>Book: ${res.book.title}</li>
-                        <li>Author: ${res.book.author.name}</li>
-                        <li>Genre: ${res.book.bookGenre.value}</li>
+                        <li>Livre : ${res.book.title}</li>
+                        <li>Auteur : ${res.book.author.name}</li>
+                        <li>Genre : ${res.book.bookGenre.value}</li>
                     </ul>
-                    <p><strong>Reservation Date:</strong> ${res.reservationDate}</p>
-                    <p><strong>Requested Start Date:</strong> ${res.askStartDate}</p>
-                    <p><strong>Requested Due Date:</strong> ${res.askDueDate}</p>
+                    <p><strong>Date de réservation :</strong> ${res.reservationDate}</p>
+                    <p><strong>Date de début demandée :</strong> ${res.askStartDate}</p>
+                    <p><strong>Date d'échéance demandée :</strong> ${res.askDueDate}</p>
 
                     <form action="reservation-librarian" method="post">
                         <input type="hidden" name="reservation" value="${res.id}">
-                        <label><input type="radio" name="decision" value="approve" required> Approve</label>
-                        <label><input type="radio" name="decision" value="decline"> Decline</label>
-                        <button type="submit">Submit</button>
+                        <label><input type="radio" name="decision" value="approve" required> Approuver</label>
+                        <label><input type="radio" name="decision" value="decline"> Refuser</label>
+                        <button type="submit">Valider</button>
                     </form>
                 </div>
             </c:forEach>
@@ -246,93 +385,116 @@
 </div>
 
     <div id="read">
-        <h3>Form to read a book in the library</h3>
+        <h3>Formulaire pour lire un livre dans la bibliothèque</h3>
         <form action="read" method="post">
             <c:choose>
                 <c:when test="${not empty book_read}">
                     <div class="form-group">
-                        <strong>Book :</strong>
+                        <strong>Livre :</strong>
                         <ul>
-                            <li><strong>Book ID :</strong> ${book_read.id}</li>
-                            <li><strong>Title :</strong> ${book_read.title}</li>
-                            <li><strong>Author :</strong> ${book_read.author.name}</li>
-                            <li><strong>Book genre :</strong> ${book_read.bookGenre.value}</li>
+                            <li><strong>ID du livre :</strong> ${book_read.id}</li>
+                            <li><strong>Titre :</strong> ${book_read.title}</li>
+                            <li><strong>Auteur :</strong> ${book_read.author.name}</li>
+                            <li><strong>Genre du livre :</strong> ${book_read.bookGenre.value}</li>
                         </ul>
                         <input type="hidden" name="book" value="${book_read.id}">
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <p><a href="home" class="action-link">Want to read a book? Choose one first</a></p>
+                    <p><a href="home" class="action-link">Vous voulez lire un livre ? Choisissez-en un d'abord</a></p>
                 </c:otherwise>
             </c:choose>
-            <label for="username">Username :</label>
+            <label for="username">Nom d'utilisateur :</label>
             <input list="usernames" id="username" name="username" required />
             <datalist id="usernames">
                 <c:forEach var="member" items="${members}">
                     <option value="${member.username}">${member.username}</option>
                 </c:forEach>
             </datalist>
-            <button type="submit">Read</button>
+            <button type="submit">Lire</button>
         </form>
     </div>
 
     <div id="loan">
-        <h3>Form to loan a book in the library</h3>
+        <h3>Formulaire pour emprunter un livre dans la bibliothèque</h3>
         <form action="loan" method="post">
             <c:choose>
                 <c:when test="${not empty book}">
                     <div class="form-group">
-                        <strong>Book :</strong>
+                        <strong>Livre :</strong>
                         <ul>
-                            <li><strong>Book ID :</strong> ${book.id}</li>
-                            <li><strong>Title :</strong> ${book.title}</li>
-                            <li><strong>Author :</strong> ${book.author.name}</li>
-                            <li><strong>Book genre :</strong> ${book.bookGenre.value}</li>
+                            <li><strong>ID du livre :</strong> ${book.id}</li>
+                            <li><strong>Titre :</strong> ${book.title}</li>
+                            <li><strong>Auteur :</strong> ${book.author.name}</li>
+                            <li><strong>Genre du livre :</strong> ${book.bookGenre.value}</li>
                         </ul>
                         <input type="hidden" name="book" value="${book.id}">
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <p><a href="home" class="action-link">Want to loan a book? Choose one first</a></p>
+                    <p><a href="home" class="action-link">Vous voulez emprunter un livre ? Choisissez-en un d'abord</a></p>
                 </c:otherwise>
             </c:choose>
-            <label for="username">Username :</label>
+            <label for="username">Nom d'utilisateur :</label>
             <input list="usernames" id="username" name="username" required />
             <datalist id="usernames">
                 <c:forEach var="member" items="${members}">
                     <option value="${member.username}">${member.username}</option>
                 </c:forEach>
             </datalist>
-            <label for="loan_date">Loan date :</label>
+            <label for="loan_date">Date d'emprunt :</label>
             <input type="date" name="loan_date" id="loan_date" required>
-            <label for="duration">Duration :</label>
+            <label for="duration">Durée :</label>
             <input type="number" name="duration" id="duration" min="1" required>
-            <button type="submit">Loan</button>
+            <button type="submit">Emprunter</button>
         </form>
     </div>
 
     <div id="subscribe">
-        <h3>Form to subscribe in the library</h3>
+        <h3>Formulaire d'abonnement à la bibliothèque</h3>
         <form action="subscribe" method="post">
-            <label for="username">Username :</label>
+            <label for="username">Nom d'utilisateur :</label>
             <input list="usernames" id="username" name="username" required />
             <datalist id="usernames">
                 <c:forEach var="member" items="${members}">
                     <option value="${member.username}">${member.username}</option>
                 </c:forEach>
             </datalist>
-            <label for="subscription_type">Subscription type :</label>
+            <label for="subscription_type">Type d'abonnement :</label>
             <select name="subscription_type" id="subscription_type" required>
-                <option value="">Select subscription type</option>
+                <option value="">Sélectionner le type d'abonnement</option>
                 <c:forEach var="sub" items="${subscriptionTypes}">
                     <option value="${sub.id}">${sub.name}--${sub.duration}</option>
                 </c:forEach>
             </select>
-            <label for="start_date">Start date :</label>
+            <label for="start_date">Date de début :</label>
             <input type="date" name="start_date" id="start_date" required><br>
-            <button type="submit">Subscribe</button>
+            <button type="submit">S'abonner</button>
         </form>
     </div>
 </main>
 </body>
 </html>
+<script>
+    // Pré-remplir les champs de date avec la date actuelle
+    document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date().toISOString().split('T')[0];
+        
+        // Pré-remplir la date d'emprunt
+        const loanDateInput = document.getElementById('loan_date');
+        if (loanDateInput) {
+            loanDateInput.value = today;
+        }
+        
+        // Pré-remplir la date de début d'abonnement
+        const startDateInput = document.getElementById('start_date');
+        if (startDateInput) {
+            startDateInput.value = today;
+        }
+        
+        // Pré-remplir toutes les dates de retour
+        document.querySelectorAll('input[name="return_date"]').forEach(function(input) {
+            input.value = today;
+        });
+    });
+</script>

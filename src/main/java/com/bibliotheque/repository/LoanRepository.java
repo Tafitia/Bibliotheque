@@ -24,4 +24,10 @@ public interface LoanRepository extends JpaRepository<Loan, Integer> {
     Optional<Loan> findById(Long idLoan);
     @Query("SELECT l FROM Loan l WHERE l.returnDate IS NULL")
     List<Loan> findLoansNotReturned();
+    
+    // Nouvelle méthode pour trouver les emprunts actifs d'un exemplaire
+    List<Loan> findByCopyIdAndReturnDateIsNull(Long copyId);
+
+    @Query("SELECT COUNT(l) FROM Loan l WHERE l.member.id = :memberId AND l.returnDate IS NULL")
+    int countActiveLoansByMemberId(@Param("memberId") Long memberId);
 }
