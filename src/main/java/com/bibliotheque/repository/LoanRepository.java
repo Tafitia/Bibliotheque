@@ -27,4 +27,7 @@ public interface LoanRepository extends JpaRepository<Loan, Integer> {
     
     // Nouvelle méthode pour trouver les emprunts actifs d'un exemplaire
     List<Loan> findByCopyIdAndReturnDateIsNull(Long copyId);
+
+    @Query("SELECT COUNT(l) FROM Loan l WHERE l.member.id = :memberId AND l.returnDate IS NULL")
+    int countActiveLoansByMemberId(@Param("memberId") Long memberId);
 }

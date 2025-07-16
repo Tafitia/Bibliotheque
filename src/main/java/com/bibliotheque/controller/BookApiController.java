@@ -9,6 +9,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/api/books")
@@ -33,7 +35,7 @@ public class BookApiController {
 
 
     @GetMapping("/{bookId}")
-    public ResponseEntity<BookWithCopiesDTO> getBookWithCopiesById(
+    public ResponseEntity<?> getBookWithCopiesById(
             @PathVariable Long bookId,
             @RequestParam(value = "date", required = false) 
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
@@ -42,9 +44,15 @@ public class BookApiController {
             BookWithCopiesDTO book = bookApiService.getBookWithCopiesById(bookId, checkDate);
             return ResponseEntity.ok(book);
         } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("erreur", "Livre non trouvé");
+            errorResponse.put("message", "Aucun livre trouvé avec l'ID: " + bookId);
+            return ResponseEntity.status(404).body(errorResponse);
         } catch (Exception e) {
-            return ResponseEntity.internalServerError().build();
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("erreur", "Erreur interne du serveur");
+            errorResponse.put("message", "Une erreur inattendue s'est produite");
+            return ResponseEntity.status(500).body(errorResponse);
         }
     }
 
