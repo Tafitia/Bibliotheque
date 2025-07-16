@@ -1,9 +1,17 @@
 package com.bibliotheque.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class CopyDTO {
     private Long id;
+    
+    @JsonProperty("numero_exemplaire")
     private Integer copyId;
+    
+    @JsonProperty("statut")
     private String status;
+    
+    @JsonProperty("disponible")
     private boolean isAvailable;
 
     public CopyDTO() {}

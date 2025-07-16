@@ -2,14 +2,26 @@ package com.bibliotheque.model.dto;
 
 import java.time.LocalDate;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class BookWithCopiesDTO {
     private Long id;
+    
+    @JsonProperty("titre")
     private String title;
+    
+    @JsonProperty("nom_auteur")
     private String authorName;
+    
     private String genre;
+    
+    @JsonProperty("date_edition")
     private LocalDate editionDate;
+    
+    @JsonProperty("age_requis")
     private Integer age;
+    
+    @JsonProperty("exemplaires")
     private List<CopyDTO> copies;
 
     public BookWithCopiesDTO() {}
